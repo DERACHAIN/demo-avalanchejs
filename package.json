@@ -1,0 +1,14 @@
+{
+  "name": "demo-avalanchejs",
+  "version": "1.0.0",
+  "description": "Examples code for AvalancheJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "avalanchejs"
+  ],
+  "author": "darenft-labs",
+  "license": "ISC"
+}
