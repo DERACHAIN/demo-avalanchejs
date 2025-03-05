@@ -10,5 +10,8 @@
     "avalanchejs"
   ],
   "author": "darenft-labs",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@avalabs/avalanchejs": "^5.0.0"
+  }
 }
