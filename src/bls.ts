@@ -1,15 +1,22 @@
-import { bls as BLS } from "@avalabs/avalanchejs";
-import { hexToBuffer } from "@avalabs/avalanchejs/dist/utils";
+import { bls as BLS, utils } from "@avalabs/avalanchejs";
 
 export function verifyPop(pkStr: string, popStr: string): boolean {
-  const pk = BLS.publicKeyFromBytes(pkStr);
-  console.log("Public key: ", pk);
+  pkStr = pkStr.startsWith("0x") ? pkStr.slice(2) : pkStr;
+  popStr = popStr.startsWith("0x") ? popStr.slice(2) : popStr;
 
-  const pop = BLS.signatureFromBytes(hexToBuffer(popStr));
-  console.log("Proof of possession: ", pop);
+  try {
+    const pk = BLS.publicKeyFromBytes(pkStr);
+    console.log("Public key: ", pk);
 
-  const msg = BLS.publicKeyToBytes(pk);
-  console.log("Message: ", msg);
+    const pop = BLS.signatureFromBytes(utils.hexToBuffer(popStr));
+    console.log("Proof of possession: ", pop);
 
-  return BLS.verifyProofOfPossession(pk, pop, msg);
+    const msg = BLS.publicKeyToBytes(pk);
+    console.log("Message: ", msg);
+
+    return BLS.verifyProofOfPossession(pk, pop, msg);
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
 }
